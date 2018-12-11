@@ -1,32 +1,30 @@
 package day4;
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
-
 public class Guard {
     private int id;
     private int minutesSlept;
-    private Map<Integer,Integer> asleepPerMinute;
+    private int[] asleepPerMinute;
 
     public Guard(int id) {
         this.id = id;
         this.minutesSlept = 0;
-        this.asleepPerMinute = new HashMap<>();
-        for (int i = 0; i < 60; i++) {
-            asleepPerMinute.put(i,0);
-        }
+        this.asleepPerMinute = new int[60];
     }
 
     public int reportMinuteMostOftenAsleep(){
-        Integer key = Collections.max(asleepPerMinute.entrySet(), Comparator.comparingInt(Map.Entry::getValue)).getKey();
-        System.out.println("Guard id:" + getId() + " | Minute most often asleep: " + key + " | Frequency " + asleepPerMinute.get(key));
-        return key;
+        int max= 0;
+        int index = 0;
+        for (int i = 0; i < asleepPerMinute.length; i++) {
+            if (asleepPerMinute[i] > max) {
+                max = asleepPerMinute[i];
+                index = i;
+            }
+        }
+        return index;
     }
 
     public int reportFrequencyOfMinuteMostOftenAsleep(){
-        return asleepPerMinute.get(reportMinuteMostOftenAsleep());
+        return asleepPerMinute[reportMinuteMostOftenAsleep()];
     }
 
     public int getId() {
@@ -45,11 +43,11 @@ public class Guard {
         this.minutesSlept = minutesSlept;
     }
 
-    public Map<Integer, Integer> getAsleepPerMinute() {
+    public int[] getAsleepPerMinute() {
         return asleepPerMinute;
     }
 
-    public void setAsleepPerMinute(Map<Integer, Integer> asleepPerMinute) {
+    public void setAsleepPerMinute(int[] asleepPerMinute) {
         this.asleepPerMinute = asleepPerMinute;
     }
 

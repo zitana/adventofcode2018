@@ -43,7 +43,7 @@ public class ReposeRecord {
 
           //Record minutes asleep to current guard
           for (int i = minuteFellAsleep; i < awaken; i++) {
-            currentGuard.getAsleepPerMinute().put(i, currentGuard.getAsleepPerMinute().get(i) + 1);
+            currentGuard.getAsleepPerMinute()[i] += 1;
           }
           //Increment total minutes asleep
           currentGuard.setMinutesSlept(currentGuard.getMinutesSlept() + (awaken - minuteFellAsleep));
