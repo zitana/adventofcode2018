@@ -59,6 +59,7 @@ public class NoMatterHowYouSliceIt {
 
         for (String claim : claims) {
             matcher = pattern.matcher(claim);
+            matcher.matches();
 
             if (isNotOverlapping(
                     Integer.parseInt(matcher.group(2)),
