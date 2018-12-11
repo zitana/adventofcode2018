@@ -39,7 +39,7 @@ public class InventoryManagementSystem {
         compare(strings.get(i), strings.get(j));
       }
     }
-
+    //Part one solution:
     return doubleCount * tripleCount;
   }
 

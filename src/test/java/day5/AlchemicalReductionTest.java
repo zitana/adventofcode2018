@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class AlchemicalReductionTest {
 
     @Test
-    void part1() throws IOException {
+    void part1() {
         String input = InputReader.readString("day5input");
         AlchemicalReduction.part1(input);
         System.out.println(AlchemicalReduction.part2());

@@ -5,7 +5,8 @@ import utils.InputReader;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -22,9 +23,8 @@ public class ReposeRecord {
     Matcher matcher;
     boolean awake = true;
     int minuteFellAsleep = 0;
-    int awaken;
+    int minuteAwoke;
 
-    //Process data
     NightWatch nightWatch = new NightWatch();
 
     for (String entry : GUARD_DATA) {
@@ -38,15 +38,15 @@ public class ReposeRecord {
           minuteFellAsleep = Integer.parseInt(entry.substring(15, 17));
           awake = false;
         } else {
-          awaken = Integer.parseInt(entry.substring(15, 17));
+          minuteAwoke = Integer.parseInt(entry.substring(15, 17));
           awake = true;
 
           //Record minutes asleep to current guard
-          for (int i = minuteFellAsleep; i < awaken; i++) {
+          for (int i = minuteFellAsleep; i < minuteAwoke; i++) {
             currentGuard.getAsleepPerMinute()[i] += 1;
           }
-          //Increment total minutes asleep
-          currentGuard.setMinutesSlept(currentGuard.getMinutesSlept() + (awaken - minuteFellAsleep));
+          //Increment guard's total minutes asleep
+          currentGuard.setMinutesSlept(currentGuard.getMinutesSlept() + (minuteAwoke - minuteFellAsleep));
         }
       }
     }
