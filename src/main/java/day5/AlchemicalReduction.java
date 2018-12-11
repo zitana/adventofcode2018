@@ -1,5 +1,6 @@
 package day5;
 
+import com.sun.jdi.IntegerValue;
 import utils.InputReader;
 
 import java.io.IOException;
@@ -35,7 +36,7 @@ public class AlchemicalReduction {
     public static int part2() {
         String input = InputReader.readString("day5input");
         String stringToModify = input;
-        int min = 800000;
+        int min = Integer.MAX_VALUE;
         int current = 0;
         for (int i = 65; i < 91; i++) {
             stringToModify = input;
