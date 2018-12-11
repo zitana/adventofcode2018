@@ -3,11 +3,14 @@ package day5;
 import utils.InputReader;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AlchemicalReduction {
 
-    public static void part1() {
-        String input = InputReader.readString("day5input");
+    public static int part1(String input) {
 
         boolean shrinking = true;
         while (shrinking) {
@@ -22,9 +25,27 @@ public class AlchemicalReduction {
         }
         System.out.println(input);
         System.out.println(input.length());
+        return input.length();
     }
 
-    public static boolean doesReact(char firstLetter, char secondLetter) {
+    private static boolean doesReact(char firstLetter, char secondLetter) {
         return Math.abs(firstLetter - secondLetter) == 32;
+    }
+
+    public static int part2() {
+        String input = InputReader.readString("day5input");
+        String stringToModify = input;
+        int min = 800000;
+        int current = 0;
+        for (int i = 65; i < 91; i++) {
+            stringToModify = input;
+            String  character = String.valueOf((char)i);
+            String modifiedString = stringToModify.replace(character, "").replace(character.toLowerCase(), "");
+            current = part1( modifiedString);
+            if (current < min) {
+                min = current;
+            }
+        }
+        return min;
     }
 }
