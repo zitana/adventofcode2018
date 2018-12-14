@@ -10,7 +10,7 @@ import java.util.List;
 public class InputReader {
 
     public static List<String> readFile(String fileName) {
-        Path path = Paths.get("/media/zita/02A8E9AC0A9FAFB0/Programming/adventofcode/src/main/resources/" + fileName);
+        Path path = Paths.get(System.getenv("INPUT_PATH") + fileName);
         List<String> strings = new ArrayList<>();
         try {
             strings = Files.readAllLines(path);
@@ -22,7 +22,7 @@ public class InputReader {
 
     public static String readString(String fileName) {
         try {
-            return Files.readString(Paths.get("/media/zita/02A8E9AC0A9FAFB0/Programming/adventofcode/src/main/resources/" + fileName));
+            return Files.readString(Paths.get(System.getenv("INPUT_PATH") +  fileName));
         } catch (IOException e) {
             e.printStackTrace();
         }
